@@ -18,11 +18,11 @@ export class UserService {
 
     if (existUser) throw new BadRequestException("User with this name already exists")
 
-    const createdUser = await this.userRepository.create({
+    const createdUser = await this.userRepository.save({
       name: createUserDto.name,
       password: await bcrypt.hash(createUserDto.password, 10),
     })
-    console.log(createdUser)
+    
     return { createdUser }
   }
 
