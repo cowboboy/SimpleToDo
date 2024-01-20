@@ -26,10 +26,18 @@ export class UserService {
     return { createdUser }
   }
 
-  async findOne(id: number) {
+  async findOneById(id: number) {
     return await this.userRepository.findOne({
       where: {
         id
+      }
+    })
+  }
+
+  async findOneByName(name: string) {
+    return await this.userRepository.findOne({
+      where: {
+        name
       }
     })
   }
