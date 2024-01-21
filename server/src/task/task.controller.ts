@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, Query } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
@@ -7,6 +7,12 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 @Controller('tasks')
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
+
+  @Get("pagination")
+  @UseGuards(JwtAuthGuard)
+  pagination(@Req() req, @Query("page") page: string, @Query("limit") limit: string) {
+    return this.taskService.pagination(+req.user.userId, +page, +limit)
+  }
 
   @Post()
   @UseGuards(JwtAuthGuard)
@@ -21,11 +27,13 @@ export class TaskController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: string) {
     return this.taskService.findOne(+id);
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
   update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
     return this.taskService.update(+id, updateTaskDto);
   }

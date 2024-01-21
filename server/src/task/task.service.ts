@@ -47,7 +47,17 @@ export class TaskService {
     const task = await this.taskRepository.findOneBy({id})
 
     if (!task) throw new NotFoundException()
-    
+
     return this.taskRepository.delete({id})
+  }
+
+  async pagination(userId: number, page: number, limit: number) {
+    return await this.taskRepository.find({
+      where: {
+        user: {id: userId}
+      },
+      take: limit,
+      skip: (page-1) * limit
+    })
   }
 }
