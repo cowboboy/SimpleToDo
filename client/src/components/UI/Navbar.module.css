@@ -1,0 +1,29 @@
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__title {
+    margin: 15px;
+}
+
+.navbar__title a {
+    color:chocolate;
+    font-weight: bolder;
+}
+
+.navbar__links {
+    display:flex;
+    margin:15px;
+}
+
+.navbar__links a {
+    margin-right: 15px;
+    color: black;
+}
+
+.navbar a {
+    text-decoration: none;
+}

@@ -1,0 +1,13 @@
+* {
+    margin:0px;
+    padding:0px;
+}
+
+.wrapper {
+    display:flex;
+    justify-content: center;
+}
+
+.content {
+    width: 800px;
+}
