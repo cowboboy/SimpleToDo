@@ -34,6 +34,6 @@ export const userSlice = createSlice({
 export const { login, logout } = userSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.isAuth
+export const selectCount = (state: RootState) => state.user
 
 export default userSlice.reducer

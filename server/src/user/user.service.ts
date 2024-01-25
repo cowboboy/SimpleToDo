@@ -26,12 +26,8 @@ export class UserService {
       name: createUserDto.name,
       password: await bcrypt.hash(createUserDto.password, 10),
     })
-
-    const payload = {
-      username: createdUser.name, sub: createdUser.id
-    }
     
-    return { access_token: await this.jwtService.signAsync(payload)}
+    return { name: createdUser.name }
   }
 
   async findOneById(id: number) {
