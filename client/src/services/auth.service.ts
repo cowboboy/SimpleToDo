@@ -6,7 +6,7 @@ export class AuthService {
 
     }
     static async registrate(user: IUser): Promise<any> {
-        return await instance.post("users", JSON.stringify(user))
+        return await instance.post("user", user)
     }
     static async getMe() {
 
