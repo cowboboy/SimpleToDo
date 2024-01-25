@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { AuthService } from "../services/auth.service";
-import { Bounce, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Auth: FC = () => {
@@ -13,33 +13,17 @@ const Auth: FC = () => {
   }
 
   async function registrate(e: React.FormEvent) {
-    e.preventDefault()
     try {
-      localStorage.setItem("Authorization", await AuthService.registrate({name, password}))
-      navigate("/")
-      toast.success('The account has been created', {
-        position: "bottom-left",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
+      e.preventDefault()
+      const data = await AuthService.registrate({name, password})
+      if (data) {
+        setIsAuth(true)
+        localStorage.setItem("Authorization", data)
+        navigate("/")
+        toast.success('The account has been created');
+      }
     } catch (err: any) {
-      toast.error(err.response.data.message[0], {
-        position: "bottom-left",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+      toast.error(err.response.data.message[0]);
     }
   }
 
