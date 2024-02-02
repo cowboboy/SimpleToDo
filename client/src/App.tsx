@@ -8,6 +8,7 @@ import { useAppDispatch } from './store/hooks';
 import { AuthService } from './services/auth.service';
 import { login, logout } from './store/userSlice';
 import {useEffect} from 'react'
+import { ProtectedRoot } from './components/ProtectedRoot';
 
 const router = createBrowserRouter([
     {
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
       children: [
         {
           path: "tasks",
-          element: <Tasks/>
+          element: (
+            <ProtectedRoot>
+                <Tasks/>
+            </ProtectedRoot>
+          )
         },
         {
           index: true,
@@ -39,7 +44,6 @@ export const App = () => {
             if (token) {
                 const user = await AuthService.getMe()
 
-                console.log(user)
                 if (user) {
                     dispatch(login({name: user.name, token}))
                 } else {
