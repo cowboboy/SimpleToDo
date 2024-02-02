@@ -3,7 +3,8 @@ import { IUser, IUserData } from "../types/types";
 
 export class AuthService {
     static async login(user: IUser): Promise<IUserData> {
-        return await instance.post("auth/login", user)
+        const response = await instance.post("auth/login", user)
+        return response.data
     }
     static async registrate(user: IUser): Promise<IUserData> {
         return await instance.post("user", user)
