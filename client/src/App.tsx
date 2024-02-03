@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Error from './pages/Error';
-import Tasks from './pages/Tasks';
+import {Tasks, loadTasks } from './pages/Tasks';
 import Layout from './pages/Layout';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
@@ -18,6 +18,7 @@ const router = createBrowserRouter([
       children: [
         {
           path: "tasks",
+          loader: loadTasks,
           element: (
             <ProtectedRoot>
                 <Tasks/>

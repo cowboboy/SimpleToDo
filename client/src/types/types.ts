@@ -7,3 +7,10 @@ export interface IUserData {
     name: string;
     token: string;
 }
+
+export interface ITask {
+    id: string,
+    message: string,
+    createdAt: string,
+    updatedAt: string
+}

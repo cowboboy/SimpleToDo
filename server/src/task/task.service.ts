@@ -26,9 +26,6 @@ export class TaskService {
           id: userId
         }
       },
-      relations: {
-        user: true
-      },
     })
   }
 
