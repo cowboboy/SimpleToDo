@@ -10,4 +10,8 @@ export class TasksService {
     static async create(task: ITaskData): Promise<ITask> {
         return await instance.post("tasks", task)
     } 
+
+    static async update(id: number, updatedTask: Partial<ITaskData>): Promise<ITask> {
+        return await instance.patch("tasks/" + id, updatedTask)
+    } 
 }
