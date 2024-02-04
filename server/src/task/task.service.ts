@@ -30,12 +30,23 @@ export class TaskService {
     })
   }
 
-  async findOne(id: number) {
+  async findOneByUserId(id: number) {
     return await this.taskRepository.findOne({
       where: {
         user: {
           id
         }
+      },
+      relations: {
+        user: true
+      },
+    })
+  }
+
+  async findOne(id: number) {
+    return await this.taskRepository.findOne({
+      where: {
+        id
       },
       relations: {
         user: true
@@ -66,9 +77,7 @@ export class TaskService {
   async remove(id: number) {
     const task = await this.taskRepository.findOne({
       where: {
-        user: {
-          id
-        }
+        id
       },
       relations: {
         user: true

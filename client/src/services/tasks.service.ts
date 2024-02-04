@@ -14,4 +14,8 @@ export class TasksService {
     static async update(id: number, updatedTask: Partial<ITaskData>): Promise<ITask> {
         return await instance.patch("tasks/" + id, updatedTask)
     } 
+
+    static async delete(id: number): Promise<ITask> {
+        return await instance.delete("tasks/" + id)
+    } 
 }
