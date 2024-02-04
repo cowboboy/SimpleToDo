@@ -14,3 +14,7 @@ export interface ITask {
     createdAt: string,
     updatedAt: string
 }
+
+export interface ITaskData {
+    message: string,
+}

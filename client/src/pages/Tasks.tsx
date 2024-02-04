@@ -13,7 +13,7 @@ export async function loadTasks() {
 export const Tasks: FC = () => {
   const tasks = useLoaderData() as ITask[]
 
-  const [isModalVisible, setModalVisible] = useState<Boolean>(false)
+  const [isModalVisible, setModalVisible] = useState<Boolean>(true)
 
   return (
     <div>

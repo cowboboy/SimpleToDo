@@ -15,8 +15,9 @@ export class TaskService {
       message: createTaskDto.message,
       user: { id: userId }
     }
-
-    return await this.taskRepository.save(newTask)
+    const createdTask = await this.taskRepository.save(newTask)
+    const {user, ...result} = createdTask
+    return result
   }
 
   async findAll(userId: number) {

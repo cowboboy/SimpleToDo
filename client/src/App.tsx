@@ -9,6 +9,7 @@ import { AuthService } from './services/auth.service';
 import { login, logout } from './store/userSlice';
 import {useEffect} from 'react'
 import { ProtectedRoot } from './components/ProtectedRoot';
+import { sendTaskData } from './components/UI/modal/modal';
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
         {
           path: "tasks",
           loader: loadTasks,
+          action: sendTaskData,
           element: (
             <ProtectedRoot>
                 <Tasks/>
